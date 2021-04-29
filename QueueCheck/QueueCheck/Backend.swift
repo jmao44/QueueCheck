@@ -16,7 +16,7 @@ class Backend {
     private init() {
         do {
             try Amplify.configure()
-            print("Initialized Amplify")
+            print("Initialized Amplify successfully")
         } catch {
             print("Could not initialize Amplify: \(error)")
         }

@@ -15,14 +15,18 @@
 		3121439B263A6E2600D0206E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31214399263A6E2600D0206E /* LaunchScreen.storyboard */; };
 		312143AD263A6F8F00D0206E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312143AC263A6F8F00D0206E /* HomeViewController.swift */; };
 		31BFF6A0263A8D050059C0B7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BFF69F263A8D050059C0B7 /* Constants.swift */; };
+		31BFF6E8263B4C4A0059C0B7 /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BFF6E7263B4C490059C0B7 /* Backend.swift */; };
 		31E0FB83263A74F500E70CB0 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E0FB82263A74F500E70CB0 /* SignupViewController.swift */; };
 		31E0FB86263A750000E70CB0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E0FB85263A750000E70CB0 /* LoginViewController.swift */; };
 		31E0FB8A263A777600E70CB0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E0FB89263A777600E70CB0 /* Utilities.swift */; };
 		31E0FB92263A7B4200E70CB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31E0FB91263A7B4200E70CB0 /* GoogleService-Info.plist */; };
+		40102FAA480A456CADF19CBA /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 05724FF49237443789F88422 /* awsconfiguration.json */; };
+		CA169206568F4111A134E8C9 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 98BBBF73CA9B456FBD1E60C5 /* amplifyconfiguration.json */; };
 		EE4F3399F07DE50E11B334AC /* Pods_QueueCheck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C1B5E6BFBA6518B7E47780 /* Pods_QueueCheck.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05724FF49237443789F88422 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = awsconfiguration.json; sourceTree = "<group>"; };
 		15C1B5E6BFBA6518B7E47780 /* Pods_QueueCheck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QueueCheck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3121438B263A6E2400D0206E /* QueueCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QueueCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3121438E263A6E2400D0206E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -34,11 +38,14 @@
 		3121439C263A6E2600D0206E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		312143AC263A6F8F00D0206E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		31BFF69F263A8D050059C0B7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		31BFF6E7263B4C490059C0B7 /* Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backend.swift; sourceTree = "<group>"; };
 		31E0FB82263A74F500E70CB0 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		31E0FB85263A750000E70CB0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		31E0FB89263A777600E70CB0 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		31E0FB91263A7B4200E70CB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3ED844095507CBBBDB3A368B /* Pods-QueueCheck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QueueCheck.debug.xcconfig"; path = "Target Support Files/Pods-QueueCheck/Pods-QueueCheck.debug.xcconfig"; sourceTree = "<group>"; };
+		702CB29D53A14E108F39B3CF /* amplifytools.xcconfig */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.xcconfig; path = amplifytools.xcconfig; sourceTree = "<group>"; };
+		98BBBF73CA9B456FBD1E60C5 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		B595E7CAA044C95037610427 /* Pods-QueueCheck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QueueCheck.release.xcconfig"; path = "Target Support Files/Pods-QueueCheck/Pods-QueueCheck.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,6 +64,7 @@
 		31214382263A6E2400D0206E = {
 			isa = PBXGroup;
 			children = (
+				AC233AB5BD394290B95B981C /* AmplifyConfig */,
 				3121438D263A6E2400D0206E /* QueueCheck */,
 				3121438C263A6E2400D0206E /* Products */,
 				98B86046A67107A75E8B6558 /* Pods */,
@@ -84,6 +92,7 @@
 				312143AB263A6F3500D0206E /* Controller */,
 				31214397263A6E2600D0206E /* Assets.xcassets */,
 				3121439C263A6E2600D0206E /* Info.plist */,
+				31BFF6E7263B4C490059C0B7 /* Backend.swift */,
 			);
 			path = QueueCheck;
 			sourceTree = "<group>";
@@ -131,6 +140,17 @@
 				B595E7CAA044C95037610427 /* Pods-QueueCheck.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		AC233AB5BD394290B95B981C /* AmplifyConfig */ = {
+			isa = PBXGroup;
+			children = (
+				702CB29D53A14E108F39B3CF /* amplifytools.xcconfig */,
+				98BBBF73CA9B456FBD1E60C5 /* amplifyconfiguration.json */,
+				05724FF49237443789F88422 /* awsconfiguration.json */,
+			);
+			name = AmplifyConfig;
+			path = .;
 			sourceTree = "<group>";
 		};
 		DC516F030B5CD4DED97D99E3 /* Frameworks */ = {
@@ -204,6 +224,8 @@
 				31E0FB92263A7B4200E70CB0 /* GoogleService-Info.plist in Resources */,
 				31214398263A6E2600D0206E /* Assets.xcassets in Resources */,
 				31214396263A6E2400D0206E /* Main.storyboard in Resources */,
+				CA169206568F4111A134E8C9 /* amplifyconfiguration.json in Resources */,
+				40102FAA480A456CADF19CBA /* awsconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +280,7 @@
 			files = (
 				31E0FB86263A750000E70CB0 /* LoginViewController.swift in Sources */,
 				31214393263A6E2400D0206E /* ViewController.swift in Sources */,
+				31BFF6E8263B4C4A0059C0B7 /* Backend.swift in Sources */,
 				31E0FB8A263A777600E70CB0 /* Utilities.swift in Sources */,
 				3121438F263A6E2400D0206E /* AppDelegate.swift in Sources */,
 				31E0FB83263A74F500E70CB0 /* SignupViewController.swift in Sources */,

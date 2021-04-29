@@ -212,6 +212,10 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - Amplify (1.9.0):
+    - Amplify/Default (= 1.9.0)
+  - Amplify/Default (1.9.0)
+  - Amplify/Tools (1.9.0)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -352,6 +356,8 @@ PODS:
   - PromisesObjC (1.2.12)
 
 DEPENDENCIES:
+  - Amplify (~> 1.0)
+  - Amplify/Tools (~> 1.0)
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Core
@@ -360,6 +366,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - abseil
+    - Amplify
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAnalytics
@@ -380,6 +387,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
+  Amplify: fdb7f9aad75a631449e2afb007f78f77deb25a84
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Firebase: c121feb35e4126c0b355e3313fa9b487d47319fd
   FirebaseAnalytics: cd3bd84d722a24a8923918af8af8e5236f615d77
@@ -398,6 +406,6 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: ef6c532aad2a4dd6d1d6c24b774bfaaed6994024
+PODFILE CHECKSUM: 96b755ca63a0cff190e020ab6747c2df12da9dd8
 
 COCOAPODS: 1.10.1

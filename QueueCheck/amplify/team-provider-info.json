@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-queuecheck-dev-161126-authRole",
+      "UnauthRoleArn": "arn:aws:iam::792006131458:role/amplify-queuecheck-dev-161126-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::792006131458:role/amplify-queuecheck-dev-161126-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-queuecheck-dev-161126-deployment",
+      "UnauthRoleName": "amplify-queuecheck-dev-161126-unauthRole",
+      "StackName": "amplify-queuecheck-dev-161126",
+      "StackId": "arn:aws:cloudformation:us-east-1:792006131458:stack/amplify-queuecheck-dev-161126/154a1f50-a927-11eb-925e-1284244017a7",
+      "AmplifyAppId": "d3vuebgpztn6p5"
+    }
+  }
+}

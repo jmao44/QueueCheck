@@ -7,12 +7,16 @@ target 'QueueCheck' do
 
   # Pods for QueueCheck
 
-  # add the Firebase pod for Google Analytics
+  # Firebase pods
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
   # add pods for any other desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
+  
+  # AWS Amplify pods
+  pod 'Amplify', '~> 1.0'
+  pod 'Amplify/Tools', '~> 1.0'
 
 end

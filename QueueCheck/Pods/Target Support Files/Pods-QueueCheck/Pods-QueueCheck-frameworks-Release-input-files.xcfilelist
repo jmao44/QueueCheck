@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-QueueCheck/Pods-QueueCheck-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Amplify/Amplify.framework
 ${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework

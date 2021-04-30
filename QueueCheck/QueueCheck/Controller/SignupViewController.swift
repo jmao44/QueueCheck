@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import Firebase
 import Amplify
+import Combine
 
 class SignupViewController: UIViewController {
     
@@ -40,31 +41,53 @@ class SignupViewController: UIViewController {
     }
     
     @IBAction func signupTapped(_ sender: Any) {
-        let error = validateFields()
-        if error != nil {
-            showError(error!)
-        } else {
-            
-            let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-            // create user
-            Auth.auth().createUser(withEmail: email, password: password, completion: { (result, err) in
-                if err != nil {
-                    self.showError("Error creating user")
-                } else {
-                    let db = Firestore.firestore()
-                    db.collection("users").addDocument(data: ["firstname": firstName, "lastname": lastName, "uid": result!.user.uid]) { (error) in
-                        if error != nil {
-                            self.showError("User cannot be added to database")
-                        }
-                    }
-                    self.transitionToHome()
-                }
-            })
+        let _ = createTodo()
+//        let error = validateFields()
+//        if error != nil {
+//            showError(error!)
+//        } else {
+//
+//            let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//            let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//
+//            // create user
+//            Auth.auth().createUser(withEmail: email, password: password, completion: { (result, err) in
+//                if err != nil {
+//                    self.showError("Error creating user")
+//                } else {
+//                    let db = Firestore.firestore()
+//                    db.collection("users").addDocument(data: ["firstname": firstName, "lastname": lastName, "uid": result!.user.uid]) { (error) in
+//                        if error != nil {
+//                            self.showError("User cannot be added to database")
+//                        }
+//                    }
+//                    self.transitionToHome()
+//                }
+//            })
+//        }
+    }
+    
+    func createTodo() -> AnyCancellable {
+        print("createTodo() is being called")
+        let todo = Todo(name: "my first todo", description: "todo description")
+        let sink = Amplify.API.mutate(request: .create(todo))
+            .resultPublisher
+            .sink { completion in
+            if case let .failure(error) = completion {
+                print("Failed to create graphql \(error)")
+            }
         }
+        receiveValue: { result in
+            switch result {
+            case .success(let todo):
+                print("Successfully created the todo: \(todo)")
+            case .failure(let graphQLError):
+                print("Could not decode result: \(graphQLError)")
+            }
+        }
+        return sink
     }
     
     func transitionToHome() {

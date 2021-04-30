@@ -18,5 +18,7 @@ target 'QueueCheck' do
   # AWS Amplify pods
   pod 'Amplify', '~> 1.0'
   pod 'Amplify/Tools', '~> 1.0'
+  
+  pod 'AmplifyPlugins/AWSAPIPlugin'
 
 end

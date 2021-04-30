@@ -7,6 +7,8 @@
 
 import UIKit
 import Firebase
+import Amplify
+import AmplifyPlugins
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        let _ = Backend.initialize()
+        
+        do {
+            try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: AmplifyModels()))
+            try Amplify.configure()
+            print("Amplify successfully configured")
+        } catch {
+            print("Failed to initialize Amplify with \(error)")
+        }
+        
         return true
     }
 

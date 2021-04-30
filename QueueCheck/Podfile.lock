@@ -216,6 +216,16 @@ PODS:
     - Amplify/Default (= 1.9.0)
   - Amplify/Default (1.9.0)
   - Amplify/Tools (1.9.0)
+  - AmplifyPlugins/AWSAPIPlugin (1.9.0):
+    - AppSyncRealTimeClient (~> 1.4.0)
+    - AWSCore (~> 2.24.0)
+    - AWSPluginsCore (= 1.9.0)
+  - AppSyncRealTimeClient (1.4.4):
+    - Starscream (~> 3.1.1)
+  - AWSCore (2.24.0)
+  - AWSPluginsCore (1.9.0):
+    - Amplify (= 1.9.0)
+    - AWSCore (~> 2.24.0)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -354,10 +364,12 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (1.2.12)
+  - Starscream (3.1.1)
 
 DEPENDENCIES:
   - Amplify (~> 1.0)
   - Amplify/Tools (~> 1.0)
+  - AmplifyPlugins/AWSAPIPlugin
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Core
@@ -367,6 +379,10 @@ SPEC REPOS:
   trunk:
     - abseil
     - Amplify
+    - AmplifyPlugins
+    - AppSyncRealTimeClient
+    - AWSCore
+    - AWSPluginsCore
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAnalytics
@@ -384,10 +400,15 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - Starscream
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   Amplify: fdb7f9aad75a631449e2afb007f78f77deb25a84
+  AmplifyPlugins: 5ffbe6b8aedfc19a16074acf7a67e6c237333a34
+  AppSyncRealTimeClient: 4479354d262a23d2cc9fea1760f3815b75a4091a
+  AWSCore: d5cd1311b33a4ae9faacda839c0ac9fff711cd79
+  AWSPluginsCore: 34b987a116d75fb09852e2812cb53902d72c73c8
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Firebase: c121feb35e4126c0b355e3313fa9b487d47319fd
   FirebaseAnalytics: cd3bd84d722a24a8923918af8af8e5236f615d77
@@ -405,7 +426,8 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
 
-PODFILE CHECKSUM: 96b755ca63a0cff190e020ab6747c2df12da9dd8
+PODFILE CHECKSUM: b798f0ded4b0479e5c90132309b02f84742568d6
 
 COCOAPODS: 1.10.1

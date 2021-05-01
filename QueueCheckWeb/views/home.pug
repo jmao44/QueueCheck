@@ -9,6 +9,7 @@ html
             }
     body
         h1 Home Page
+
         ul(hidden)
             each loc in coordMaps
                 li=loc.name
@@ -23,7 +24,15 @@ html
         p(hidden id="libWaitTime")=waitTimes[2]
         p(hidden id="naWaitTime")=waitTimes[3]
 
+        p(hidden id="wvReport")=reports[1]
+        p(hidden id="libReport")=reports[2]
+        p(hidden id="naReport")=reports[3]
+
         div(id="map")
+        div(style="visibility: hidden" id="wvReportChart")
+        div(style="visibility: hidden" id="libReportChart")
+        div(style="visibility: hidden" id="naReportChart")
+
         script(async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARsNpnQRNR3hmJphz_FOSiMyU33ScK69M&callback=initMap&libraries=&v=weekly")
         script.
             const locations = [
@@ -39,6 +48,10 @@ html
             const wvWaitTime = parseInt(document.getElementById("wvWaitTime").textContent)
             const libWaitTime = parseInt(document.getElementById("libWaitTime").textContent)
             const naWaitTime = parseInt(document.getElementById("naWaitTime").textContent)
+
+            let wvDiv = document.getElementById("wvReportChart")
+            let naDiv = document.getElementById("naReportChart")
+            let libDiv = document.getElementById("libReportChart")
 
             function outputTime(wt) {
                 if (wt == -1) {
@@ -67,6 +80,9 @@ html
                 });
                 markers[0].addListener("click", () => {
                     iw.open(map, markers[0])
+                    document.getElementById("wvReportChart").style.visibility = "visible"
+                    document.getElementById("naReportChart").style.visibility = "hidden"
+                    document.getElementById("libReportChart").style.visibility = "hidden"
                 })
                 ////////////////
                 let iw1 = new google.maps.InfoWindow({
@@ -74,6 +90,9 @@ html
                 });
                 markers[1].addListener("click", () => {
                     iw1.open(map, markers[1])
+                    document.getElementById("libReportChart").style.visibility = "visible"
+                    document.getElementById("naReportChart").style.visibility = "hidden"
+                    document.getElementById("wvReportChart").style.visibility = "hidden"
                 })
                 ///////////////
                 let iw2 = new google.maps.InfoWindow({
@@ -81,19 +100,86 @@ html
                 });
                 markers[2].addListener("click", () => {
                     iw2.open(map, markers[2])
+                    document.getElementById("naReportChart").style.visibility = "visible"
+                    document.getElementById("libReportChart").style.visibility = "hidden"
+                    document.getElementById("wvReportChart").style.visibility = "hidden"
                 })
 
                 google.maps.event.addListener(iw, 'domready', function() {
                     var wvEstimate = document.getElementById("wvEstimate")
-                    wvEstimate.innerHTML = wvEstimate.innerHTML + outputTime(wvWaitTime)
+                    wvEstimate.innerHTML = "Current wait time: " + outputTime(wvWaitTime)
                 })
                 google.maps.event.addListener(iw1, 'domready', function() {
                     var libEstimate = document.getElementById("libEstimate")
-                    libEstimate.innerHTML = libEstimate.innerHTML + outputTime(libWaitTime)
+                    libEstimate.innerHTML = "Current wait time: " + outputTime(libWaitTime)
                 })
                 google.maps.event.addListener(iw2, 'domready', function() {
                     var naEstimate = document.getElementById("naEstimate")
-                    naEstimate.innerHTML = naEstimate.innerHTML + outputTime(naWaitTime)
+                    naEstimate.innerHTML = "Current wait time: " + outputTime(naWaitTime)
                 })
 
+            }
+
+        //- Drawing charts
+        script(src="https://www.gstatic.com/charts/loader.js")
+        script.
+            let wvReportString = document.getElementById("wvReport").textContent
+            let naReportString = document.getElementById("naReport").textContent
+            let libReportString = document.getElementById("libReport").textContent
+
+            let wvReport = wvReportString.split(',').map(Number)
+            let naReport = naReportString.split(',').map(Number)
+            let libReport = libReportString.split(',').map(Number)
+
+            google.charts.load('current', {packages: ['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            let timeArray = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00',
+                             '06:00', '07:00', '08:00', '09:00', '10:00', '11:00',
+                             '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
+                             '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
+            let wvArray = [
+                ['Hour', 'Visits', { role: 'style' } ]
+            ]
+            for (i = 0; i < timeArray.length; i++) {
+                wvArray.push([timeArray[i], (wvReport[i] == -1 ? 0 : wvReport[i]), 'color: #76A7FA'])
+            }
+
+            let libArray = [
+                ['Hour', 'Visits', { role: 'style' } ]
+            ]
+            for (i = 0; i < timeArray.length; i++) {
+                libArray.push([timeArray[i], (libReport[i] == -1 ? 0 : libReport[i]), 'color: #76A7FA'])
+            }
+
+            let naArray = [
+                ['Hour', 'Visits', { role: 'style' } ]
+            ]
+            for (i = 0; i < timeArray.length; i++) {
+                naArray.push([timeArray[i], (naReport[i] == -1 ? 0 : naReport[i]), 'color: #76A7FA'])
+            }
+
+            function drawChart() {
+                // Define the chart to be drawn.
+                var wvData = google.visualization.arrayToDataTable(wvArray);
+                var naData = google.visualization.arrayToDataTable(naArray);
+                var libData = google.visualization.arrayToDataTable(libArray);
+
+                // Instantiate and draw the chart.
+                var wvOptions = {
+                    title: "West Village Starbucks"
+                }
+                var naOptions = {
+                    title: "North Avenue Dining Hall"
+                }
+                var libOptions = {
+                    title: "Library Printer"
+                }
+
+                var wvChart = new google.visualization.ColumnChart(document.getElementById('wvReportChart'));
+                wvChart.draw(wvData, wvOptions);
+                var libChart = new google.visualization.ColumnChart(document.getElementById('libReportChart'));
+                libChart.draw(libData, libOptions);
+                var naChart = new google.visualization.ColumnChart(document.getElementById('naReportChart'));
+                naChart.draw(naData, naOptions);
             }

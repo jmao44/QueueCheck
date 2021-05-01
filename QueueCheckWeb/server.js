@@ -73,6 +73,7 @@ app.get('/home', (req, res) => {
 
     let coordMaps = []
     let waitTimes = {}
+    let reports = {}
 
     docClient.scan(params, function (err, data) {
         if (err) {
@@ -84,6 +85,7 @@ app.get('/home', (req, res) => {
             for (i = 0; i < locationArray.length; i++) {
                 let loc = locationArray[i]
                 let id = loc.Location_ID
+                let report = loc.Aggregated_Report
                 let name = loc.Name
                 let lat = loc.Latitude
                 let lon = loc.Longitude
@@ -99,13 +101,14 @@ app.get('/home', (req, res) => {
                 }
                 coordMaps.push(map)
                 waitTimes[id] = wt
+                reports[id] = report
             }
 
             let wvDescrip = descriptions.wvDescrip
             let libDescrip = descriptions.libDescrip
             let naDescrip = descriptions.naDescrip
 
-            res.render('home.pug', { coordMaps: coordMaps, wvDescrip: wvDescrip, libDescrip: libDescrip, naDescrip: naDescrip, waitTimes: waitTimes })
+            res.render('home.pug', { coordMaps: coordMaps, wvDescrip: wvDescrip, libDescrip: libDescrip, naDescrip: naDescrip, waitTimes: waitTimes, reports: reports })
         }
     })
 

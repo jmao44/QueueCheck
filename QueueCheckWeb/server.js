@@ -44,7 +44,7 @@ app.post('/login', (req, res) => {
     let params = {
         TableName: "User",
         Key: {
-            "Email": email,
+            "User_Email": email,
         }
     }
     docClient.get(params, function (err, data) {
@@ -79,7 +79,7 @@ app.get('/home', (req, res) => {
         if (err) {
             console.log("ERROR " + JSON.stringify(err, null, 2))
         } else {
-            console.log("Getting location coordinates from DynamoDB")
+            console.log("Getting locations from DynamoDB")
             const locationArray = data.Items
 
             for (i = 0; i < locationArray.length; i++) {
@@ -116,12 +116,8 @@ app.get('/home', (req, res) => {
 
 app.post('/home', (req, res) => {
     let locationID = parseInt(req.body.button)
-    let estimateTime = req.body.waitTime
+    let estimateTime = parseInt(req.body.waitTime)
     let currentTimestamp = microtime.now() / 1000000
-
-    console.log(locationID)
-    console.log(estimateTime)
-    console.log(microtime.now() / 1000000)
 
     let estimation = {
         "Location_ID": locationID,
@@ -156,7 +152,7 @@ app.post('/register', (req, res) => {
     const hashedPassword = md5(password)
 
     let user = {
-        "Email": email,
+        "User_Email": email,
         "First_Name": fname,
         "Last_Name": lname,
         "MD5_Encrypted_Password": hashedPassword

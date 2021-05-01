@@ -139,21 +139,21 @@ html
                              '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
                              '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
             let wvArray = [
-                ['Hour', 'Visits', { role: 'style' } ]
+                ['Hour', 'Wait Time', { role: 'style' } ]
             ]
             for (i = 0; i < timeArray.length; i++) {
                 wvArray.push([timeArray[i], (wvReport[i] == -1 ? 0 : wvReport[i]), 'color: #76A7FA'])
             }
 
             let libArray = [
-                ['Hour', 'Visits', { role: 'style' } ]
+                ['Hour', 'Wait Time', { role: 'style' } ]
             ]
             for (i = 0; i < timeArray.length; i++) {
                 libArray.push([timeArray[i], (libReport[i] == -1 ? 0 : libReport[i]), 'color: #76A7FA'])
             }
 
             let naArray = [
-                ['Hour', 'Visits', { role: 'style' } ]
+                ['Hour', 'Wait Time', { role: 'style' } ]
             ]
             for (i = 0; i < timeArray.length; i++) {
                 naArray.push([timeArray[i], (naReport[i] == -1 ? 0 : naReport[i]), 'color: #76A7FA'])

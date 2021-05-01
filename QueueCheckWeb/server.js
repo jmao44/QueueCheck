@@ -21,6 +21,7 @@ let awsConfig = {
 AWS.config.update(awsConfig);
 
 let docClient = new AWS.DynamoDB.DocumentClient()
+let currentUser = ""
 
 const descriptions = require('./description')
 
@@ -51,6 +52,7 @@ app.post('/login', (req, res) => {
             let dbPass = data.Item.MD5_Encrypted_Password
             if (dbPass == password) {
                 console.log("Login successful")
+                currentUser = email
                 res.redirect('/home')
             } else {
                 console.log("User::Login::error - password doesn't match.")
@@ -124,6 +126,7 @@ app.post('/register', (req, res) => {
             res.redirect('/register')
         } else {
             console.log("User::save::success")
+            currentUser = email
             res.redirect('/home')
         }
     })

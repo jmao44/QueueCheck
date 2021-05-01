@@ -9,15 +9,19 @@ html
             }
     body
         h1 Home Page
-        ul
+        ul(hidden)
             each loc in coordMaps
                 li=loc.name
                 ul
                     li=loc.coord.lat
                     li=loc.coord.lon
-        p(id="naDescrip")=naDescrip
-        p(id="wvDescrip")=wvDescrip
-        p(id="libDescrip")=libDescrip
+        p(hidden id="naDescrip")=naDescrip
+        p(hidden id="wvDescrip")=wvDescrip
+        p(hidden id="libDescrip")=libDescrip
+
+        p(hidden id="wvWaitTime")=waitTimes[1]
+        p(hidden id="libWaitTime")=waitTimes[2]
+        p(hidden id="naWaitTime")=waitTimes[3]
 
         div(id="map")
         script(async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARsNpnQRNR3hmJphz_FOSiMyU33ScK69M&callback=initMap&libraries=&v=weekly")
@@ -31,6 +35,18 @@ html
             const naDescrip = document.getElementById("naDescrip").textContent
             const wvDescrip = document.getElementById("wvDescrip").textContent
             const libDescrip = document.getElementById("libDescrip").textContent
+
+            const wvWaitTime = parseInt(document.getElementById("wvWaitTime").textContent)
+            const libWaitTime = parseInt(document.getElementById("libWaitTime").textContent)
+            const naWaitTime = parseInt(document.getElementById("naWaitTime").textContent)
+
+            function outputTime(wt) {
+                if (wt == -1) {
+                    return "Collecting more data"
+                } else {
+                    return wt.toString()
+                }
+            }
 
             function initMap() {
                 const gt = { lat: 33.7756, lng: -84.3963}
@@ -65,6 +81,19 @@ html
                 });
                 markers[2].addListener("click", () => {
                     iw2.open(map, markers[2])
+                })
+
+                google.maps.event.addListener(iw, 'domready', function() {
+                    var wvEstimate = document.getElementById("wvEstimate")
+                    wvEstimate.innerHTML = wvEstimate.innerHTML + outputTime(wvWaitTime)
+                })
+                google.maps.event.addListener(iw1, 'domready', function() {
+                    var libEstimate = document.getElementById("libEstimate")
+                    libEstimate.innerHTML = libEstimate.innerHTML + outputTime(libWaitTime)
+                })
+                google.maps.event.addListener(iw2, 'domready', function() {
+                    var naEstimate = document.getElementById("naEstimate")
+                    naEstimate.innerHTML = naEstimate.innerHTML + outputTime(naWaitTime)
                 })
 
             }

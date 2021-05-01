@@ -6,6 +6,8 @@ var path = require('path')
 var md5 = require('md5')
 var AWS = require('aws-sdk')
 
+var microtime = require('microtime')
+
 app.set('view-engine', 'pug')
 app.use(express.urlencoded({ extended: false }))
 // app.use("/js", express.static(path.join(__dirname, 'public/js')))
@@ -24,6 +26,7 @@ let docClient = new AWS.DynamoDB.DocumentClient()
 let currentUser = ""
 
 const descriptions = require('./description')
+const { hrtime } = require('process')
 
 app.get('/', (req, res) => {
     // res.render('index.ejs')
@@ -69,6 +72,7 @@ app.get('/home', (req, res) => {
     }
 
     let coordMaps = []
+    let waitTimes = {}
 
     docClient.scan(params, function (err, data) {
         if (err) {
@@ -79,24 +83,62 @@ app.get('/home', (req, res) => {
 
             for (i = 0; i < locationArray.length; i++) {
                 let loc = locationArray[i]
+                let id = loc.Location_ID
+                let name = loc.Name
+                let lat = loc.Latitude
+                let lon = loc.Longitude
+                let wt = loc.Wait_Time
+
                 let map = {
-                    name: loc.Name,
+                    id: id,
+                    name: name,
                     coord: {
-                        lat: loc.Latitude,
-                        lon: loc.Longitude
+                        lat: lat,
+                        lon: lon
                     }
                 }
                 coordMaps.push(map)
+                waitTimes[id] = wt
             }
 
             let wvDescrip = descriptions.wvDescrip
             let libDescrip = descriptions.libDescrip
             let naDescrip = descriptions.naDescrip
 
-            res.render('home.pug', { coordMaps: coordMaps, wvDescrip: wvDescrip, libDescrip: libDescrip, naDescrip: naDescrip })
+            res.render('home.pug', { coordMaps: coordMaps, wvDescrip: wvDescrip, libDescrip: libDescrip, naDescrip: naDescrip, waitTimes: waitTimes })
         }
     })
 
+})
+
+app.post('/home', (req, res) => {
+    let locationID = parseInt(req.body.button)
+    let estimateTime = req.body.waitTime
+    let currentTimestamp = microtime.now() / 1000000
+
+    console.log(locationID)
+    console.log(estimateTime)
+    console.log(microtime.now() / 1000000)
+
+    let estimation = {
+        "Location_ID": locationID,
+        "Time_Submitted": currentTimestamp,
+        "Est_Minutes": estimateTime,
+        "User_Email": currentUser
+    }
+    let params = {
+        TableName: "Estimation",
+        Item: estimation
+    }
+    docClient.put(params, function (err, data) {
+        if (err) {
+            console.log("Estimation::save::error - " + JSON.stringify(err, null, 2))
+            res.redirect('/home')
+        } else {
+            console.log("Estimation::save::success")
+            res.redirect('/home')
+        }
+    })
 })
 
 app.get('/register', (req, res) => {

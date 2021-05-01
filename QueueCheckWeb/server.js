@@ -1,11 +1,15 @@
 const express = require('express')
 const app = express()
 
+var path = require('path')
+
 var md5 = require('md5')
 var AWS = require('aws-sdk')
 
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
+app.use(express.static(path.join(__dirname, 'public')))
+
 require('dotenv').config()
 
 let awsConfig = {
@@ -56,7 +60,36 @@ app.post('/login', (req, res) => {
 })
 
 app.get('/home', (req, res) => {
-    res.render('home.ejs')
+    let params = {
+        TableName: "Location",
+    }
+
+    let coordMaps = []
+
+    docClient.scan(params, function (err, data) {
+        if (err) {
+            console.log("ERROR " + JSON.stringify(err, null, 2))
+        } else {
+            console.log("Getting location coordinates from DynamoDB")
+            const locationArray = data.Items
+
+            for (i = 0; i < locationArray.length; i++) {
+                let loc = locationArray[i]
+                let map = {
+                    name: loc.Name,
+                    coord: {
+                        lat: loc.Longitude,
+                        lon: loc.Longitude
+                    }
+                }
+                coordMaps.push(map)
+            }
+            res.render('home.ejs', { coordMaps: coordMaps })
+            // console.log(coordMaps)
+            // console.log(JSON.stringify(data, null, 2))
+        }
+    })
+
 })
 
 app.get('/register', (req, res) => {

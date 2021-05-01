@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        title Login
+    body
+        h1 Login Page
+        div
+            form(action="/login" method="POST")
+                div
+                    label(for="email") Email
+                    input(type="email" id="email" name="email" required)
+                div
+                    label(for="password") Password
+                    input(type="password" id="password" name="password" required)
+                button(type="submit") Login
+        a(href='/register') Register

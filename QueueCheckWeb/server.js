@@ -6,7 +6,7 @@ var path = require('path')
 var md5 = require('md5')
 var AWS = require('aws-sdk')
 
-app.set('view-engine', 'ejs')
+app.set('view-engine', 'pug')
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -24,11 +24,12 @@ let docClient = new AWS.DynamoDB.DocumentClient()
 
 
 app.get('/', (req, res) => {
-    res.render('index.ejs')
+    // res.render('index.ejs')
+    res.render('index.pug')
 })
 
 app.get('/login', (req, res) => {
-    res.render('login.ejs')
+    res.render('login.pug')
 })
 
 app.post('/login', (req, res) => {
@@ -84,7 +85,7 @@ app.get('/home', (req, res) => {
                 }
                 coordMaps.push(map)
             }
-            res.render('home.ejs', { coordMaps: coordMaps })
+            res.render('home.pug', { coordMaps: coordMaps })
             // console.log(coordMaps)
             // console.log(JSON.stringify(data, null, 2))
         }
@@ -93,7 +94,7 @@ app.get('/home', (req, res) => {
 })
 
 app.get('/register', (req, res) => {
-    res.render('register.ejs')
+    res.render('register.pug')
 })
 
 app.post('/register', (req, res) => {

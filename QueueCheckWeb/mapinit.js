@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    initialze()
+})
+
 function initMap() {
     const gt = { lat: 33.7756, lng: -84.3963}
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -9,5 +13,3 @@ function initMap() {
         map: map,
     })
 }
-
-module.exports = initMap

@@ -8,7 +8,7 @@ var AWS = require('aws-sdk')
 
 app.set('view-engine', 'pug')
 app.use(express.urlencoded({ extended: false }))
-app.use(express.static(path.join(__dirname, 'public')))
+// app.use("/js", express.static(path.join(__dirname, 'public/js')))
 
 require('dotenv').config()
 
@@ -22,6 +22,7 @@ AWS.config.update(awsConfig);
 
 let docClient = new AWS.DynamoDB.DocumentClient()
 
+const descriptions = require('./description')
 
 app.get('/', (req, res) => {
     // res.render('index.ejs')
@@ -79,15 +80,18 @@ app.get('/home', (req, res) => {
                 let map = {
                     name: loc.Name,
                     coord: {
-                        lat: loc.Longitude,
+                        lat: loc.Latitude,
                         lon: loc.Longitude
                     }
                 }
                 coordMaps.push(map)
             }
-            res.render('home.pug', { coordMaps: coordMaps })
-            // console.log(coordMaps)
-            // console.log(JSON.stringify(data, null, 2))
+
+            let wvDescrip = descriptions.wvDescrip
+            let libDescrip = descriptions.libDescrip
+            let naDescrip = descriptions.naDescrip
+
+            res.render('home.pug', { coordMaps: coordMaps, wvDescrip: wvDescrip, libDescrip: libDescrip, naDescrip: naDescrip })
         }
     })
 

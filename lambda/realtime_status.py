@@ -11,7 +11,7 @@ client = boto3.client('dynamodb', region_name=aws_region_name,
 
 location_table_name = 'Location'
 estimation_table_name = 'Estimation'
-window_width_minutes = 60
+window_width_minutes = 10
 
 def lambda_handler(event, context):
     min_time = min_submitted_time()

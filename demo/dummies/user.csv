@@ -1,4 +1,4 @@
-Email,First_Name,Last_Name,MD5_Encrypted_Password
+User_Email,First_Name,Last_Name,MD5_Encrypted_Password
 aaron@qcheck.com,Aaron,Arnold,b930990c455d18d84f44757a4eb9756a
 blake@qcheck.com,Blake,Bell,e99a18c428cb38d5f260853678922e03
 chloe@qcheck.com,Chloe,Clarkson,e39619f1b9de010969d611274e7397d7
